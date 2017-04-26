@@ -7,7 +7,7 @@ module.exports = {
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || process.env.MONGODB_URI || 3000,
   templateEngine: 'swig',
   // Session Cookie settings
   sessionCookie: {
@@ -33,7 +33,7 @@ module.exports = {
     profileUpload: {
       dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
       limits: {
-        fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
+        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
       }
     }
   }
