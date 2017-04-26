@@ -43,8 +43,6 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     Socket.on('joinsuccess', function (data) {
       $scope.room = data;
       console.log('joinsuccess : ' + data);
-      // data.text = 'hello';
-      // Socket.emit('chatMessage', data);
     });
 
     // Add an event listener to the 'chatMessage' event
@@ -54,12 +52,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
 
     // Create a controller method for sending messages
     $scope.sendMessage = function () {
-      // Create a new message object
-      // var message = {
-      //   text: this.messageText
-      // };
       $scope.room.text = this.messageText;
-
+      // $scope.room.roomId = _id : pass roomId สำหรับ update massage
       // Emit a 'chatMessage' message event
       Socket.emit('chatMessage', $scope.room);
 

@@ -26,7 +26,6 @@ module.exports = function (io, socket) {
     // console.log('createroom Data : ' + data);
     var chatroom = new Chatroom(data);
     chatroom.user = socket.request.user;
-
     chatroom.save(function (err) {
       if (err) {
         // return res.status(400).send({
@@ -54,7 +53,10 @@ module.exports = function (io, socket) {
 
   // Send a chat messages to all connected sockets when a message is received
   socket.on('chatMessage', function (message) {
-    // console.log('chatMessage : ' + JSON.stringify(message));
+    
+    // เช็คชื่อห้องด้วย id for update by id : message.roomId ต้อง pass มาตอน send massage (ไม่รู้มียังลองดู)
+    // สร้าง Model message ตามตัวแปร message เพิ่ม/ลบ ถ้าจะ save massage
+
     message.type = 'message';
     message.created = Date.now();
     message.profileImageURL = socket.request.user.profileImageURL;
