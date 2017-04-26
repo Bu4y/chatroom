@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Chatrooms</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="chatroom in vm.chatrooms"
+       ui-sref="chatrooms.view({ chatroomId: chatroom._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="chatroom.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="chatroom.user" ng-bind="chatroom.user.displayName"></span>
+        <span ng-if="!chatroom.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="chatroom.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.chatrooms.$resolved && !vm.chatrooms.length">
+    No Chatrooms yet, why don't you <a ui-sref="chatrooms.create">create one</a>?
+  </div>
+</section>

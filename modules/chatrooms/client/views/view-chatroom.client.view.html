@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.chatroom.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.chatroom.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="chatrooms.edit({ chatroomId: vm.chatroom._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.chatroom.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.chatroom.user"
+            ng-bind="vm.chatroom.user.displayName"></span>
+      <span ng-if="!vm.chatroom.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.chatroom.content"></p>
+</section>

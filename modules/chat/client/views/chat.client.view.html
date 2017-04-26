@@ -1,0 +1,51 @@
+<!-- The chat view -->
+<section class="container" ng-controller="ChatController">
+  <div class="page-header">
+    <h1>Chat Example</h1>
+  </div>
+  <!-- The message form -->
+  <div class="row">
+    <div class="col-md-4">
+      <div ng-repeat="chat in chatlist">
+        <button>{{chat.name}}</button>
+      </div>
+      <select ng-options="item as item.displayName for item in users | filter: { _id : '!'+authenID }" ng-model="userSelect" class="form-control"></select>
+      <button ng-click="createGroup(userSelect)">create</button>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-unstyled">
+            <!-- List all messages -->
+            <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in messages">
+              <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
+              <img ng-src="{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
+              <div class="pull-left chat-message-details">
+                <strong ng-bind="message.username"></strong>
+                <br>
+                <span ng-bind="message.text"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="sendMessage();">
+            <fieldset class="row">
+              <div class="input-group">
+                <input type="text" id="messageText" name="messageText" class="form-control" ng-model="messageText" placeholder="Enter new message">
+                <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-disabled="!messageText.length">Submit</button>
+        </span>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<select ng-options="item as item.displayName for item in users | filter: { _id : '!'+authenID }" ng-model="userSelect" class="form-control"
+    ng-change="createGroup(userSelect);"></select>-->
+  <!--{{chatlist}}-->
+</section>
